@@ -50,9 +50,9 @@ const page = () => {
       <div className="p-3 bg-white rounded-2xl mb-8">
         <div className="bg-white rounded-2xl">
           {
-            comments.map((comment)=>{
+            comments.map((comment, index)=>{
               return(
-                <div className="bg-[var(--bg-1)] rounded-2xl p-3 sm:p-4 lg:p-6 mb-2">
+                <div key={index} className="bg-[var(--bg-1)] rounded-2xl p-3 sm:p-4 lg:p-6 mb-2">
                   <div className="flex items-center flex-wrap justify-between gap-4 ">
                     <div className="flex gap-5 items-center">
                       <div className="flex-grow">
