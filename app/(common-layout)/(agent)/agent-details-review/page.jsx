@@ -86,8 +86,8 @@ const page = () => {
           
           <Link
             href="#"
-            className="featured-tab link font-semibold clr-primary-400 inline-block py-3 px-6 bg-[var(--primary-light)] hover:bg-primary hover:text-white rounded-full active">
-            Voir tous les commentaires
+            className="featured-tab link font-semibold clr-primary-400 inline-block py-3 px-6 bg-[var(--primary-light)] hover:bg-[#2D3A96] hover:text-white rounded-full active">
+            Ajouter un commentaire
           </Link>
         </div>
       </div>
