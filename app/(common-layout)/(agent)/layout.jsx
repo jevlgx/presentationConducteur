@@ -108,7 +108,6 @@ export default function RootLayout({children}) {
                       Expérience professionelle
                     </div>
                     <div className="mb-0">* De mars 2018 à juin 2020: conducteur indépendant</div>
-                    <div className="mb-0">* De juin 2020 à aujourd'hui: conducteur chez ******** <b className="text-color-green">aucun accident</b></div>
                   </div>
                 </li>
               </ul>
