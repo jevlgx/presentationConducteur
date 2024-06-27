@@ -52,7 +52,7 @@ export default function RootLayout({children}) {
                     Mail: <span className="text-primary">***@gmail.com</span>
                   </p>
                 </li>
-                <div div className='flex min-w-full justify-evenly my-3'>
+                <div className='flex min-w-full justify-evenly my-3'>
                   <div className='flex items-center'>
                     <StarIcon className="w-5 h-5 text-[var(--tertiary)]" /> <span className='ml-2'>{iconsNumber.starts}</span>
                   </div>
@@ -131,12 +131,12 @@ export default function RootLayout({children}) {
               <span className="block text-2xl font-semibold clr-neutral-600 mb-4">
                 Details
               </span>
-              <p className="mb-0">
+              <div className="mb-0">
                 <p>Je suis Christian, un chauffeur professionnel expérimenté qui s'engage à offrir un service de transport de qualité supérieure. Avec de nombreuses années d'expérience dans ce domaine, j'ai acquis des compétences de conduite avancées et une connaissance approfondie des routes de la région.</p><br />
                 <p>Je suis reconnu pour mon excellent sens de l'orientation et ma capacité à naviguer avec aisance dans la circulation, en optimisant les itinéraires pour offrir à mes passagers des trajets rapides et sans encombre. Mes passagers apprécient ma conduite sûre et prudente, qui leur permet de voyager en toute tranquillité d'esprit.</p><br />
                 <p>Au-delà de mes compétences de conduite, je me démarque par mon service attentionné et ma personnalité chaleureuse. J'accueille chaleureusement mes clients, je veille à leurs besoins et je m'engage à faire de chaque trajet une expérience agréable. Mes passagers me décrivent souvent comme un conducteur fiable, courtois et soucieux du bien-être de tous.</p><br />
                 <p>Que ce soit pour un déplacement professionnel, un rendez-vous important ou un transport de loisir, je suis le choix idéal pour offrir un service de transport de qualité, en toute sécurité et dans une ambiance agréable.</p>
-              </p>
+              </div>
             
             </div>
           </div>
