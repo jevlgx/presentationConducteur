@@ -3,7 +3,8 @@ import { HandThumbDownIcon, HandThumbUpIcon, HeartIcon, StarIcon } from "@heroic
 import axios from 'axios';
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import MyTable from './MyTable';
 
 export default function RootLayout({children}) {
   let URL = "http://localhost:8086"
@@ -27,7 +28,7 @@ export default function RootLayout({children}) {
 
   return (
     <div className="py-[30px] lg:py-[60px] bg-[var(--bg-2)] px-3">
-      <div className="container">
+      <div className="container max-w-[1600px]">
         <div className="grid grid-cols-12 gap-4 lg:gap-6">
           <div className="col-span-12 xl:col-span-4">
             <div className="bg-white rounded-2xl p-3 sm:p-4 lg:py-8 lg:px-6 mb-6">
@@ -43,9 +44,13 @@ export default function RootLayout({children}) {
               <h4 className="text-center text-2xl font-semibold mb-4">
                 M. Christian
               </h4>
-              <p className="mb-0">
-                Contact: <span className="text-primary">6******** | Melen Yaounde</span>
-              </p>
+              <ul className="flex items-center justify-center flex-wrap mb-7">
+                <li>
+                  <p className="mb-0">
+                    Contact: <span className="text-primary">6******** | Melen Yaounde</span>
+                  </p>
+                </li>
+              </ul>
               <ul className="flex items-center justify-center flex-wrap mb-7">
                 <li>
                   <p className="mb-0">
@@ -90,6 +95,12 @@ export default function RootLayout({children}) {
               
               <div className="border border-dashed my-7"></div>
               <ul className="flex flex-col gap-4 mb-10 max-text-30 mx-auto">
+              <li>
+                  <div className="items-center gap-2 overflow-x-auto">
+                    <MyTable className="min-w-[500px]"/>
+                  </div>
+                </li>
+                <div className="border border-dashed my-2"></div>
                 <li>
                   <div className="items-center gap-2">
                     {/* <CalendarDaysIcon className="w-5 h-5 text-primary" /> */}
