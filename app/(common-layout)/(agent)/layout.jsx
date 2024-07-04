@@ -14,7 +14,7 @@ export default function RootLayout({children}) {
     handUp: 1,
     handDown: 1
   }
-
+  let [driverData, setDriverData] = useState({})
   let [disponible, setDisponible] = useState(true)
   useEffect(() => {
     const driverId = "IDENTIFIANT PASSE EN GET"
@@ -24,6 +24,11 @@ export default function RootLayout({children}) {
       setDisponible(dispo)
     })
     .catch(error => console.error(error))
+
+    axios.get(URL+"/getDriverData?driverID="+driverId)
+    .then(response =>{
+      setDriverData(response.data)
+    }).catch(error => console.error(error))
   }, []);
 
   return (
@@ -42,19 +47,19 @@ export default function RootLayout({children}) {
                 />
               </div>
               <h4 className="text-center text-2xl font-semibold mb-4">
-                M. Christian
+                Mr {driverData.driverName}
               </h4>
               <ul className="flex items-center justify-center flex-wrap mb-7">
                 <li>
                   <p className="mb-0">
-                    Contact: <span className="text-primary">6******** | Melen Yaounde</span>
+                    Contact: <span className="text-primary"> {driverData.driverNumber} | {driverData.driverLocation} </span>
                   </p>
                 </li>
               </ul>
               <ul className="flex items-center justify-center flex-wrap mb-7">
                 <li>
                   <p className="mb-0">
-                    Mail: <span className="text-primary">***@gmail.com</span>
+                    Mail: <span className="text-primary">{driverData.driverMail}</span>
                   </p>
                 </li>
                 <div className='flex min-w-full justify-evenly my-3'>
@@ -97,7 +102,7 @@ export default function RootLayout({children}) {
               <ul className="flex flex-col gap-4 mb-10 max-text-30 mx-auto">
               <li>
                   <div className="items-center gap-2 overflow-x-auto">
-                    <MyTable className="min-w-[500px]"/>
+                    <MyTable className="min-w-[500px]" tableData = {driverData.tableData} />
                   </div>
                 </li>
                 <div className="border border-dashed my-2"></div>
@@ -107,7 +112,7 @@ export default function RootLayout({children}) {
                     <div className="block text-1xl font-semibold clr-neutral-600 mb-4">
                       Formation
                     </div>
-                    <div className="mb-0"> 1990 Permis B à AUTO-ECOLE KASAP</div>
+                    <div className="mb-0">{driverData.formationChauffeur}</div>
                   </div>
                 </li>
                 <div className="border border-dashed my-2"></div>
@@ -118,7 +123,7 @@ export default function RootLayout({children}) {
                     <div className="block text-1xl font-semibold clr-neutral-600 mb-4">
                       Expérience professionelle
                     </div>
-                    <div className="mb-0">* De mars 2018 à juin 2020: conducteur indépendant</div>
+                    <div className="mb-0">{driverData.ExperienceProfessionnelle}</div>
                   </div>
                 </li>
               </ul>
@@ -143,10 +148,7 @@ export default function RootLayout({children}) {
                 Details
               </span>
               <div className="mb-0">
-                <p>Je suis Christan, un chauffeur professionnel expérimenté qui s'engage à offrir un service de transport de qualité supérieure. Avec de nombreuses années d'expérience dans ce domaine, j'ai acquis des compétences de conduite avancées et une connaissance approfondie des routes de la région.</p><br />
-                <p>Je suis reconnu pour mon excellent sens de l'orientation et ma capacité à naviguer avec aisance dans la circulation, en optimisant les itinéraires pour offrir à mes passagers des trajets rapides et sans encombre. Mes passagers apprécient ma conduite sûre et prudente, qui leur permet de voyager en toute tranquillité d'esprit.</p><br />
-                <p>Au-delà de mes compétences de conduite, je me démarque par mon service attentionné et ma personnalité chaleureuse. J'accueille chaleureusement mes clients, je veille à leurs besoins et je m'engage à faire de chaque trajet une expérience agréable. Mes passagers me décrivent souvent comme un conducteur fiable, courtois et soucieux du bien-être de tous.</p><br />
-                <p>Que ce soit pour un déplacement professionnel, un rendez-vous important ou un transport de loisir, je suis le choix idéal pour offrir un service de transport de qualité, en toute sécurité et dans une ambiance agréable.</p>
+                {driverData.Description}
               </div>
             
             </div>

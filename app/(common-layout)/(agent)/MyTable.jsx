@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 
-const MyTable = () => {
+const MyTable = (tableData) => {
   const [showTable, setShowTable] = useState(false);
 
-  const tableData = [
-    { Jour: '28/06/2024', HeureDebut: '08h00', HeureFin: '18h00'},
-    { Jour: '29/06/2024', HeureDebut: '08h00', HeureFin: '18h00'},
-    { Jour: '30/06/2024', HeureDebut: '12h00', HeureFin: '02h00'},
-    { Jour: '01/07/2024', HeureDebut: '08h00', HeureFin: '18h00'}
-  ];
+  
   const handleButtonClick = (row) => {
     console.log(`Bouton cliqué pour la ligne : ${row.Jour}`);
   };
@@ -45,7 +40,7 @@ const MyTable = () => {
                     className="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
                     onClick={() => handleButtonClick(row)}
                     >
-                        Réserver
+                      Réserver
                     </button>
                 </td>
               </tr>
