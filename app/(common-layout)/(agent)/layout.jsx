@@ -5,30 +5,63 @@ import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from 'react';
 import MyTable from './MyTable';
+import page from './agent-details-review/page';
+import { compileFunction } from "vm";
+import { useSearchParams } from 'next/navigation';
 
 export default function RootLayout({children}) {
-  let URL = "http://localhost:8086"
+
+  // TODO: LORS DE L'INTEGRATION TRANFERER L'ID DU CHAUFFEUR PAR PARAMETRE GET EN UTILISANT L'ATTRIBUT "driverId" en GET
+  // TODO: ACTUALISER LES ADRESSES DES SERVEURS AINSI QUE LES PATHS LORS DE L'INTEGRATION
+  const searchParams = useSearchParams();
+  const driverId = searchParams.get('driverId');
+  console.log("=======================", driverId)
+  let DRIVER_SERVICE_URL = "http://localhost:8086"
+  let SEARCH_SERVICE_URL = "http://localhost:8086"
+  const DRIVER_DISPONIBILITY_PATH = "/get-driver-disponibilities"
+  const DRIVER_DATA_PATH = "/get-driver-data"
+
   let iconsNumber = {
     starts: 1,
     hearts: 2,
     handUp: 1,
     handDown: 1
   }
-  let [driverData, setDriverData] = useState({})
-  let [disponible, setDisponible] = useState(true)
-  useEffect(() => {
-    const driverId = "IDENTIFIANT PASSE EN GET"
-    axios.get(URL+"/isDisponible?driverId="+driverId)
-    .then(response => {
-      dispo = response.disponible === "true"
-      setDisponible(dispo)
-    })
-    .catch(error => console.error(error))
+  let [driverData, setDriverData] = useState({
+    driverPicture : "/img/chauffeur.png",
+    driverName : "Christian",
+    driverNumber : "6********",
+    driverLocation : "Melen Yaounde",
+    driverMail : "***@gmail.com",
+    formationChauffeur : " 1990 Permis B à AUTO-ECOLE KASAP",
+    ExperienceProfessionnelle : "De mars 2018 à juin 2020: conducteur indépendant",
+    Description : "Je suis Christan, un chauffeur professionnel expérimenté qui s'engage à offrir un service de transport de qualité supérieure. Avec de nombreuses années d'expérience dans ce domaine, j'ai acquis des compétences de conduite avancées et une connaissance approfondie des routes de la région. Je suis reconnu pour mon excellent sens de l'orientation et ma capacité à naviguer avec aisance dans la circulation, en optimisant les itinéraires pour offrir à mes passagers des trajets rapides et sans encombre. Mes passagers apprécient ma conduite sûre et prudente, qui leur permet de voyager en toute tranquillité d'esprit. Au-delà de mes compétences de conduite, je me démarque par mon service attentionné et ma personnalité chaleureuse. J'accueille chaleureusement mes clients, je veille à leurs besoins et je m'engage à faire de chaque trajet une expérience agréable. Mes passagers me décrivent souvent comme un conducteur fiable, courtois et soucieux du bien-être de tous. Que ce soit pour un déplacement professionnel, un rendez-vous important ou un transport de loisir, je suis le choix idéal pour offrir un service de transport de qualité, en toute sécurité et dans une ambiance agréable.",
+  });
+  let [tableData, setTableData] = useState([
+    { Jour: '28/06/2024', HeureDebut: '08h00', HeureFin: '18h00'},
+    { Jour: '29/06/2024', HeureDebut: '08h00', HeureFin: '18h00'},
+    { Jour: '30/06/2024', HeureDebut: '12h00', HeureFin: '02h00'},
+    { Jour: '01/07/2024', HeureDebut: '08h00', HeureFin: '18h00'}
+  ]);
+  let [disponible, setDisponible] = useState(true);
 
-    axios.get(URL+"/getDriverData?driverID="+driverId)
+  
+  useEffect(() => {
+    axios.get(SEARCH_SERVICE_URL+DRIVER_DISPONIBILITY_PATH+"?driverId="+driverId)
+    .then(response => {
+      if(response.data.length == 0){
+        setDisponible(false)
+      }else{
+        setDisponible(true)
+        setTableData(response.data)
+      }
+    }).catch(error => console.error(error))
+
+    axios.get(DRIVER_SERVICE_URL+DRIVER_DATA_PATH+"?driverId="+driverId)
     .then(response =>{
       setDriverData(response.data)
     }).catch(error => console.error(error))
+
   }, []);
 
   return (
@@ -41,7 +74,8 @@ export default function RootLayout({children}) {
                 <Image
                   width={130}
                   height={130}
-                  src="/img/chauffeur.png"
+                  //TODO: decommenter la ligne de img lorsque le connexion au back du driver service sera fonctionnelle
+                  //src={`${DRIVER_SERVICE_URL}/uploads/${driverData.driverPicture}`}
                   alt="image"
                   className="rounded-full w-full h-full"
                 />
@@ -91,7 +125,7 @@ export default function RootLayout({children}) {
                     :
                     <div href="#"
                       className="inline-flex items-center gap-2 p-2 rounded-full bg-[#F84800] text-white :bg-primary-400 hover:text-white font-medium mt-2">
-                      <span className="inline-block"> inDisponible </span>
+                      <span className="inline-block"> Indisponible </span>
                     </div>
                   }
                   
@@ -100,12 +134,17 @@ export default function RootLayout({children}) {
               
               <div className="border border-dashed my-7"></div>
               <ul className="flex flex-col gap-4 mb-10 max-text-30 mx-auto">
-              <li>
-                  <div className="items-center gap-2 overflow-x-auto">
-                    <MyTable className="min-w-[500px]" tableData = {driverData.tableData} />
-                  </div>
-                </li>
-                <div className="border border-dashed my-2"></div>
+                {disponible &&
+                  <>
+                    <li>
+                      <div className="items-center gap-2 overflow-x-auto">
+                        <MyTable className="min-w-[500px]" tableData = {tableData} />
+                      </div>
+                    </li>
+                    <div className="border border-dashed my-2"></div>
+                  </>
+                }
+                
                 <li>
                   <div className="items-center gap-2">
                     {/* <CalendarDaysIcon className="w-5 h-5 text-primary" /> */}

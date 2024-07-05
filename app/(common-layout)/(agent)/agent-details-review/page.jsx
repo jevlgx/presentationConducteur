@@ -1,7 +1,66 @@
+"use client"
 import { HandThumbDownIcon, HandThumbUpIcon, HeartIcon, StarIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
+import { comments } from '../layout';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
-const page = (comments) => {
+export default function page(){
+  // TODO: ACTUALISER LES ADRESSES DES SERVEURS AINSI QUE LES PATHS LORS DE L'INTEGRATION
+  let REVIEW_SERVICE_URL = "http://localhost:8080"
+  let DRIVER_COMMENTS_PATH = "/get-driver-comments"
+
+  const [comments, setcomments] = useState([
+    {
+      name: "William",
+      job: "DevOps",
+      date: "23.10.2024",
+      hour: "18h15",
+      icon: "star",
+      comment: "Excellent chauffeur ! Christian était très professionnel et ponctuel. J'ai passé un trajet très agréable avec lui. Je le recommande vivement !"
+    },
+    {
+      name: "Lushai",
+      job: "Business Analyst",
+      date: "23.10.2024",
+      hour: "18h15",
+      icon: "heart",
+      comment: "Christian était un chauffeur sympathique et courtois. Il a pris le temps de discuter pendant le trajet et m'a fait me sentir à l'aise. Je le choisirai à nouveau pour mes prochains déplacements."
+    },
+    {
+      name: "Josée",
+      job: "Entrepreneure",
+      date: "23.10.2024",
+      hour: "18h15",
+      icon: "hand_up",
+      comment: "Je recommande fortement Christian en tant que chauffeur. Il était très professionnel et attentionné. Le trajet s'est déroulé sans problème et j'ai beaucoup apprécié sa compagnie."
+    },
+    {
+      name: "Cedrick",
+      job: "Ingénieur logiciel",
+      date: "23.10.2024",
+      hour: "18h15",
+      icon: "hand_down",
+      comment: "Il était en retard "
+    },
+    {
+      name: "Foueguim",
+      job: "Webmaster",
+      date: "23.10.2024",
+      hour: "18h15",
+      icon: "heart",
+      comment: "Christian était un excellent chauffeur. Il était amical, serviable et a rendu le trajet très agréable. Je le recommande à tous ceux qui recherchent un chauffeur fiable."
+    }
+  ]);
+  useEffect(() => {
+    const driverId = "IDENTIFIANT PASSE EN GET"
+    axios.get(REVIEW_SERVICE_URL+DRIVER_COMMENTS_PATH+"?driverId="+driverId)
+    .then(response => {
+      setcomments(response.data)
+    })
+    .catch(error => console.error(error))
+
+  }, []);
   
   return (
     <div className="col-span-12">
@@ -53,5 +112,3 @@ const page = (comments) => {
     </div>
   );
 };
-
-export default page;

@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 
-const MyTable = (tableData) => {
+export default function Mytable({ className, tableData }){
   const [showTable, setShowTable] = useState(false);
-
   
   const handleButtonClick = (row) => {
     console.log(`Bouton cliqué pour la ligne : ${row.Jour}`);
@@ -51,5 +50,3 @@ const MyTable = (tableData) => {
     </div>
   );
 };
-
-export default MyTable;
