@@ -1,5 +1,3 @@
-Voici une réponse améliorée avec les corrections grammaticales et orthographiques:
-
 # Service front de présentation des conducteurs
 
 Ce service est conçu pour être intégré à une application globale et ne peut pas fonctionner de manière autonome.
