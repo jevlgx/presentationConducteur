@@ -1,69 +1,72 @@
-# Application Web de chat automatisable
+Service front de présentation des conducteurs
 
-Cette application web est composée d'un front-end développé avec React et d'un back-end développé avec Node.js et Express.
+Ce service est conçu pour être intégré à une application globale et ne peut pas fonctionner de manière autonome.
+Table des matières
 
-## Table des matières
-1. [Description](#description)
-2. [Installation](#installation)
-   1. [Prérequis](#prérequis)
-   2. [Back-end](#back-end)
-   3. [Front-end](#front-end)
-3. [Utilisation](#utilisation)
-4. [Technologies utilisées](#technologies-utilisées)
-5. [Contributeurs](#contributeurs)
-6. [Licence](#licence)
+    Description
+    Installation
+        Prérequis
+        Back-end
+        Front-end
+    Utilisation
+    Technologies utilisées
+    Contributeurs
 
-## Description
-Cette application est un composant du projet de classe de gestion des conducteurs et se limite à la page de présentation d'un conducteur
+Description
 
-## Installation
+Cette application est un composant du projet de gestion des conducteurs et se limite à la page de présentation d'un conducteur.
+Installation
+Prérequis
 
-### Prérequis
 Vous devez avoir installé les éléments suivants sur votre système :
-- Git version 2.38.1.windows.1
-- Nodejs V10.5.0
 
-### Back-end
-Récupérer, installer et lancer les services Utilisés :
-```
+    Git version 2.38.1.windows.1
+    Node.js version 10.5.0
+
+Back-end
+
+Récupérez, installez et lancez les services suivants :
+
 - Planning service
 - Reservation service
 - Review service
 - Driver service
 - User service
-```
-### Front-end
-1. Clonez le dépôt Git :
-```
+
+Front-end
+
+    Clonez le dépôt Git :
+
 git clone https://github.com/jevlgx/presentationConducteur.git
-```
-2. Accédez au dossier du projet :
-```
+
+    Accédez au dossier du projet :
+
 cd presentationConducteur
-```
-3. Installez les dépendances :
-```
+
+    Installez les dépendances :
+
 npm install
-```
-## Utilisation
 
-1. Lancez le front-end :
+Utilisation
 
-Entrez la commande suivante pour lancer le programme :
-```
+    Lancez le front-end :
+
+Exécutez la commande suivante pour lancer le programme :
+
 npm run dev
-```
 
-2. Le projet s'ouvvre sur le port 3000 :
-Ouvrez votre navigateur et entrez l'adresse
-`http://localhost:3000/agent-details-review?driverId=Identifiant du chauffeur dans le service driverService`
+    Le projet s'ouvre sur le port 3000 :
+    Ouvrez votre navigateur et entrez l'adresse
+    http://localhost:3000/agent-details-review?driverId=Identifiant du chauffeur dans le service driverService
 
-NB: cette methode est utilisée pour réaliser un simple test du système et vérifier qu'il saura s'intégrer au reste du projet suivant les directives qui ont été spécifiées dans les exigences de développement
+Remarque : cette méthode est utilisée pour réaliser un simple test du système et vérifier qu'il peut s'intégrer au reste du projet conformément aux directives spécifiées dans les exigences de développement.
+Technologies utilisées
 
-## Technologies utilisées
 Front-end :
-- Next js V13.4.4
 
-## Contributeurs
-- William Kamgang (https://github.com/jevlgx)
-- Alex Foueguim (https://github.com/El-Prof-ai)
+    Next.js version 13.4.4
+
+Contributeurs
+
+    William Kamgang (https://github.com/jevlgx)
+    Alex Foueguim (https://github.com/El-Prof-ai)
